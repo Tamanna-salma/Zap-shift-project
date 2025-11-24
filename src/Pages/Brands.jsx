@@ -16,6 +16,7 @@ const brandLogos = [amazon, amazon_vector, casio, moonstar, randstad, star, star
 const Brands = () => {
     return (
         <div className=' mt-20'>
+            <h2 className='text-center text-xl font-bold mb-8'>We've helped thousands of sales teams</h2>
             <Swiper
                 loop={true}
                 slidesPerView={4}
@@ -35,7 +36,7 @@ const Brands = () => {
                 }
 
             </Swiper>
-            <hr className='border-dashed mt-10 ' />
+            <hr className='border-dashed mt-10 mx-auto max-w-5xl' />
         </div>
     );
 };

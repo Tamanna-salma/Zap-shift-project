@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import Logo from '../components/Logo';
 
 const Navber = () => {
@@ -22,7 +22,7 @@ const Navber = () => {
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">
-                    <Logo></Logo>
+                  <Link to="/">  <Logo></Logo></Link>
                 </a>
             </div>
             <div className="navbar-center hidden lg:flex">

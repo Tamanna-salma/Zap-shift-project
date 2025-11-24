@@ -7,7 +7,7 @@ import bannerImg2 from '../assets/banner/banner2.png'
 import bannerImg3 from '../assets/banner/banner3.png'
 import { Carousel } from 'react-responsive-carousel';
 import { BsFillArrowDownRightCircleFill } from "react-icons/bs";
-export const Banner = () => {
+ const Banner = () => {
   return (
     <div className='max-w-7xl mx-auto px-4  mt-6 relative'>
         <Carousel
@@ -36,3 +36,4 @@ export const Banner = () => {
     </div>
   )
 }
+ export default Banner;
