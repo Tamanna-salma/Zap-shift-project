@@ -4,9 +4,9 @@ import authimg from '../../assets/authImage.png';
 import { Outlet } from 'react-router'; 
 const AuthLayout = () => {
   return (
-   <div className='max-w-7xl p-3 mx-auto'>
+   <div className='max-w-7xl p-3 mx-auto '>
             <Logo></Logo>
-            <div className='flex items-center'>
+            <div className='flex flex-col mt-5 md:flex-row items-center'>
                 <div className='flex-1'>
                     <Outlet></Outlet>
                 </div>

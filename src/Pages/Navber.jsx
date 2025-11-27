@@ -1,15 +1,27 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router';
 import Logo from '../components/Logo';
+import UseAuth from '../Hooks/UseAuth';
 
 const Navber = () => {
-     const links = <>
+    const { user,logOut } = UseAuth();
+    const handleLogout=()=>{
+        logOut()
+        .then(result=>{
+            console.log(result);
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+
+    }
+    const links = <>
         <li><NavLink to="">Services</NavLink></li>
         <li><NavLink to="">About Us</NavLink></li>
         <li><NavLink to="/coverage">Coverage</NavLink></li>
     </>
-  return (
-   <div className="navbar bg-base-100 shadow-sm">
+    return (
+        <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -22,7 +34,7 @@ const Navber = () => {
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">
-                  <Link to="/">  <Logo></Logo></Link>
+                    <Link to="/">  <Logo></Logo></Link>
                 </a>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -30,11 +42,16 @@ const Navber = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
-            </div>
+            <div className="navbar-end gap-3">
+                {user ?
+                 <a onClick={handleLogout} className="btn">Logout</a>
+                 :               
+                  <Link to="/login"className="btn">login</Link>
+                  }
+                  <Link to="/rider"className='btn text-black bg-[#CAEB66]'>Be a Rider</Link>
+             </div>
         </div>
     );
 };
-  
+
 export default Navber

@@ -2,11 +2,13 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import UseAuth from '../../../Hooks/UseAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
+import SocialLogin from '../SocialLogin';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
     const {signInUser} = UseAuth();
     const location = useLocation();
+    // console.log('in the login page',location);
     const navigate = useNavigate();
 
 
@@ -22,10 +24,9 @@ const Login = () => {
             })
     }
 
-
   return (
     <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
-            <h3 className="text-3xl text-center">Welcome back</h3>
+            <h3 className="text-3xl text-center mt-5">Welcome back</h3>
             <p className='text-center'>Please Login</p>
             <form className="card-body" onSubmit={handleSubmit(handleLogin)}>
                 <fieldset className="fieldset">
@@ -52,7 +53,7 @@ const Login = () => {
                     className='text-blue-400 underline'
                     to="/register">Register</Link></p>
             </form>
-            <SocialLogin></SocialLogin>
+         <SocialLogin></SocialLogin>
         </div>
   )
 }
