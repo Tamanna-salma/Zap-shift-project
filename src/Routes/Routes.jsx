@@ -7,6 +7,7 @@ import Register from "../Pages/Auth/Register";
 import Login from "../Pages/Auth/login/Login";
 import Rider from "../Pages/Rider";
 import PrivateRoute from "./PrivateRoute";
+import SendParcel from "../Pages/sendPercel/SendParcel";
 
  export const router = createBrowserRouter([
   {
@@ -24,6 +25,13 @@ import PrivateRoute from "./PrivateRoute";
           <Rider></Rider>
 
         </PrivateRoute>
+      },
+      {
+        path:'sendparcel',
+        element:<PrivateRoute>
+          <SendParcel></SendParcel>
+        </PrivateRoute>,
+        loader:()=>fetch('/warehouses.json').then(res=>res.json())
       },
       {
         path:"/coverage",
@@ -44,7 +52,7 @@ import PrivateRoute from "./PrivateRoute";
         path:'/register',
         element:<Register></Register>
 
-      }
+      },
     ]
 
   }
