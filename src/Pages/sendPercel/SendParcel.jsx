@@ -3,6 +3,7 @@ import { useForm, useWatch } from 'react-hook-form'
 import UseAuth from '../../Hooks/UseAuth';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
+import UseAxiosSecure from '../../Hooks/UseAxiosSecure';
 
 const SendParcel = () => {
     const {
@@ -12,7 +13,7 @@ const SendParcel = () => {
         // formState: { errors } 
     } = useForm();
     const { user } = UseAuth();
-    // const axiosSecure = useAxiosSecure();
+    const axiosSecure = UseAxiosSecure();
 
     const serviceCenters = useLoaderData();
     const regionsDuplicate = serviceCenters.map(c => c.region);
@@ -27,7 +28,6 @@ const SendParcel = () => {
         const districts = regionDistricts.map(d => d.district);
         return districts;
     }
-
 
     const handleSendParcel = data => {
         console.log(data);
@@ -54,6 +54,7 @@ const SendParcel = () => {
         }
 
         console.log('cost', cost);
+        data.cost=cost;
 
         Swal.fire({
             title: "Agree with the Cost?",
@@ -67,11 +68,10 @@ const SendParcel = () => {
             if (result.isConfirmed) {
 
                 // save the parcel info to the database
-
-                // axiosSecure.post('/parcels', data)
-                //     .then(res => {
-                //         console.log('after saving parcel', res.data);
-                //     })
+                axiosSecure.post('/parcels', data)
+                    .then(res => {
+                        console.log('after saving parcel', res.data);
+                    })
 //.........................
                 // Swal.fire({
                 //     title: "Deleted!",
@@ -83,8 +83,8 @@ const SendParcel = () => {
 
     }
     return (
-        <div>
-            <h2 className="text-5xl font-bold">Send A Parcel</h2>
+        <div className='max-w-7xl mx-auto px-5'>
+            <h2 className="text-xl lg:text-5xl text-center mt-5 font-bold">Send A Parcel</h2>
             <form onSubmit={handleSubmit(handleSendParcel)} className='mt-12 p-4 text-black'>
                 {/* parcel type*/}
                 <div>
@@ -116,7 +116,7 @@ const SendParcel = () => {
                     {/* sender Details */}
 
                     <fieldset className="fieldset">
-                        <h4 className="text-2xl font-semibold">Sender Details</h4>
+                        <h4 className=" text-xl lg:text-2xl font-semibold">Sender Details</h4>
                         {/* sender name */}
                         <label className="label">Sender Name</label>
                         <input type="text" {...register('senderName')}
@@ -160,7 +160,7 @@ const SendParcel = () => {
                     </fieldset>
                     {/* receiver Details */}
                     <fieldset className="fieldset">
-                        <h4 className="text-2xl font-semibold">Receiver Details</h4>
+                        <h4 className="text-xl lg:text-2xl font-semibold">Receiver Details</h4>
                         {/* receiver name */}
                         <label className="label">Receiver Name</label>
                         <input type="text" {...register('receiverName')} className="input w-full" placeholder="Receiver Name" />
@@ -206,4 +206,4 @@ const SendParcel = () => {
     )
 }
 
-export default SendParcel
+export default SendParcel;

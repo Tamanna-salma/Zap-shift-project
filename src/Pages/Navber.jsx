@@ -20,6 +20,13 @@ const Navber = () => {
         <li><NavLink to="">About Us</NavLink></li>
         <li><NavLink to="/coverage">Coverage</NavLink></li>
         <li><NavLink to="/sendparcel">SendParcel</NavLink></li>
+
+        {
+            user && <>
+            <li><NavLink to="/dashboard/myparcel">My Parcel</NavLink></li>
+
+            </>
+        }
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
