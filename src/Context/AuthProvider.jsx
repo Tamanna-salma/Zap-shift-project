@@ -34,6 +34,7 @@ const AuthProvider = ({ children }) => {
      useEffect(()=>{
     const unsubscribe=onAuthStateChanged(auth,(curentUser)=>{
         setUser(curentUser);
+        setLoading(false);
     })
     return()=>{
         unsubscribe();
@@ -57,4 +58,4 @@ const AuthProvider = ({ children }) => {
     )
 }
 
-export default AuthProvider
+export default AuthProvider;
